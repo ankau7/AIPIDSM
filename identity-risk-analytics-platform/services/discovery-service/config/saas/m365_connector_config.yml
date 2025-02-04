@@ -1,0 +1,28 @@
+m365:
+  enabled: true
+  config:
+    # Authentication and API endpoint settings.
+    tenant_id: "your-m365-tenant-id"
+    client_id: "your-m365-client-id"
+    client_secret: "your-m365-client-secret"
+    organization: "your_m365_organization"  # Optional: used for filtering/display if needed.
+    api_endpoint: "https://graph.microsoft.com/v1.0/"
+    
+    # Pagination and incremental discovery settings.
+    page_size: 100
+    last_run: "2023-01-01T00:00:00Z"  # ISO 8601 format; only records modified after this time will be fetched.
+    
+    # Concurrency settings.
+    max_workers: 10             # Number of concurrent threads/tasks for fetching data.
+    api_timeout: 10             # Timeout in seconds for API requests.
+    
+    # Rate limit retry policy.
+    rate_limit_retry:
+      max_attempts: 5           # Maximum number of retry attempts for rate-limited requests.
+      base_delay: 1.0           # Base delay (in seconds) for exponential backoff.
+    
+    # Kafka topic settings for M365 identity discovery.
+    # Since resource and access log discovery are handled separately,
+    # only the identity Kafka topic is specified here.
+    kafka_topics:
+      identity: "m365-identity"
