@@ -1,0 +1,10 @@
+# requirements.txt for auth-service
+
+# PyJWT is used for generating and verifying JSON Web Tokens.
+PyJWT==2.6.0
+
+# PyYAML is used for loading the RBAC configuration from a YAML file.
+PyYAML==6.0
+
+# Optionally, include pytest for running tests.
+pytest==7.2.0
