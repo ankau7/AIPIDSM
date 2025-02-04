@@ -1,0 +1,24 @@
+# github_connector_config.yml
+github:
+  enabled: true
+  config:
+    # Authentication and API endpoint settings.
+    github_token: "your_github_personal_access_token_here"
+    organization: "your_organization_name_here"
+    api_endpoint: "https://api.github.com/"
+    
+    # Concurrency settings.
+    max_workers: 10
+    api_timeout: 10  # Timeout (in seconds) for API requests.
+    
+    # Rate limit retry policy.
+    rate_limit_retry:
+      max_attempts: 5
+      base_delay: 1.0  # Base delay (in seconds) for exponential backoff.
+    
+    # Kafka topic settings for GitHub discovery.
+    # Since we plan to have separate pipelines for resources and access logs,
+    # only identity and privilege topics are included here.
+    kafka_topics:
+      identity: "github-identity"
+      privilege: "github-privilege"
