@@ -1,1 +1,35 @@
+# rbac_config.yml
+version: "1.0"
+description: "RBAC configuration for the AI-Powered Identity Risk Analytics Platform. Defines roles and associated permissions."
+
+roles:
+  admin:
+    description: "Administrator role with full access to all system functionalities."
+    permissions:
+      - read:*
+      - write:*
+      - delete:*
+      - manage:users
+      - manage:roles
+      - manage:settings
+  editor:
+    description: "Editor role with rights to read and modify content."
+    permissions:
+      - read:*
+      - write:content
+      - update:content
+  viewer:
+    description: "Viewer role with rights to read content only."
+    permissions:
+      - read:*
+  auditor:
+    description: "Auditor role with rights to read logs and reports for compliance."
+    permissions:
+      - read:logs
+      - read:reports
+  support:
+    description: "Support role with rights to assist users and view non-sensitive data."
+    permissions:
+      - read:*
+      - write:ticket
 
