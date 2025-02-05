@@ -1,0 +1,31 @@
+# salesforce_connector_config.yml
+salesforce:
+  enabled: true
+  config:
+    # Connection settings for Salesforce using OAuth 2.0.
+    instance_url: "https://yourinstance.my.salesforce.com"
+    token_endpoint: "https://login.salesforce.com/services/oauth2/token"
+    client_id: "your_salesforce_client_id"
+    client_secret: "your_salesforce_client_secret"
+    username: "your_salesforce_username"
+    password: "your_salesforce_password"  # Include the security token if required (e.g., "password+securityToken")
+    
+    # SOQL query to fetch user records.
+    query: "SELECT Id, Username, Email, Name, LastModifiedDate FROM User"
+    
+    # Pagination and incremental discovery settings.
+    page_size: 100
+    last_run: "2023-01-01T00:00:00Z"   # ISO 8601 format; only records updated after this time will be fetched.
+    
+    # Concurrency and timeout settings.
+    max_workers: 10                  # Number of concurrent threads/tasks for API calls.
+    api_timeout: 10                  # Timeout in seconds for API requests.
+    
+    # Rate limit retry policy.
+    rate_limit_retry:
+      max_attempts: 5              # Maximum number of retry attempts on rate limit errors.
+      base_delay: 1.0              # Base delay in seconds for exponential backoff.
+    
+    # Kafka topic settings for publishing discovered identity data.
+    kafka_topics:
+      identity: "salesforce-identity"
