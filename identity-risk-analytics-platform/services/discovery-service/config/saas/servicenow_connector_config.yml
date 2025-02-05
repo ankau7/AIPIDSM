@@ -1,0 +1,32 @@
+# servicenow_connector_config.yml
+
+servicenow:
+  enabled: true
+  config:
+    # Connection settings for ServiceNow instance using OAuth 2.0.
+    instance_url: "https://yourinstance.service-now.com"
+    # OAuth credentials instead of username and password.
+    client_id: "your_servicenow_client_id"
+    client_secret: "your_servicenow_client_secret"
+    # Optionally, include the token endpoint if it's not the default.
+    token_endpoint: "https://yourinstance.service-now.com/oauth_token.do"
+    
+    # Target table for identity records.
+    table: "sys_user"
+    
+    # Pagination and incremental discovery settings.
+    sysparm_limit: 100
+    last_run: "2023-01-01 00:00:00"
+    
+    # Concurrency and timeout settings.
+    max_workers: 10
+    api_timeout: 10
+    
+    # Rate limit retry policy.
+    rate_limit_retry:
+      max_attempts: 5
+      base_delay: 1.0
+    
+    # Kafka topic settings for publishing discovered identity data.
+    kafka_topics:
+      identity: "servicenow-identity"
